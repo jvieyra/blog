@@ -4,8 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
-{
+class Post extends Model{
+
+	//allow massive assigment
+	protected $guarded = [];
+
   //instancia de Carbon para formateo de fechas.
 	protected $dates = ['published_at'];
 

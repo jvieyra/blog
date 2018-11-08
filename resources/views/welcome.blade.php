@@ -4,7 +4,6 @@
 <section class="posts container">
 
 	@foreach($posts as $post)
-
 	<article class="post no-image">
 		<div class="content-post">
 			<header class="container-flex space-between">
