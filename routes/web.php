@@ -1,11 +1,11 @@
 <?php
 
-Route::get('/','PagesController@home');
+Route::get('/','PagesController@home')->name('index');
+Route::get('blog/{post}','PostsController@show');
 
 Route::get('posts',function(){
 	return App\Post::all();
 });
-
 
 
 //group especifica un grupo de rutas 'admin/'

@@ -2,12 +2,18 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model{
 
 	//allow massive assigment
 	protected $guarded = [];
+
+	//cambiar el tipo de dato para url
+	public function getRouteKeyName(){
+		return 'url';
+	}
 
   //instancia de Carbon para formateo de fechas.
 	protected $dates = ['published_at'];
@@ -21,4 +27,11 @@ class Post extends Model{
 	public function tags(){
 		return $this->belongsToMany(Tag::class);
 	}
+
+	public function scopePublished($query){
+		$query->whereNotNull('published_at')
+									->where('published_at','<=', Carbon::now())
+									->latest('published_at');
+	}
+
 }
