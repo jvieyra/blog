@@ -15,15 +15,31 @@ class PostsController extends Controller{
 		return view('admin.posts.index',compact('posts'));
 	}
 
+	/*
 	public function create(){
 		$categories = Category::all();
 		$tags = Tag::all();
 		return view('admin.posts.create',compact('categories','tags'));
 	}
+	*/
 
 	public function store(Request $request){
+		$this->validate($request,['title' => 'required']);
+		$post = Post::create([
+			'title' => $request->get('title'),
+			'url' => str_slug($request->get('title'),'-')
+		]);
+		return redirect()->route('admin.posts.edit',$post);
+	}
 
-		//dd($request->filled('published_at'));
+	public function edit(Post $post){
+		$categories = Category::all();
+		$tags = Tag::all();
+		return view('admin.posts.edit',compact('categories','tags','post'));
+	}
+
+
+	public function update(Post $post, Request $request){
 		$this->validate($request,[
 			'title' => 'required',
 			'body' => 'required',
@@ -32,9 +48,6 @@ class PostsController extends Controller{
 			'excerpt' => 'required'
 		]);
 
-		//Post::create();
-		//return $request;
-		$post = new Post;
 		$post->title = $request->title;
 		$post->url = str_slug($request->title);
 		$post->body = $request->body;
@@ -44,13 +57,8 @@ class PostsController extends Controller{
 		$post->save();
 
 		//etiquetas
-		$post->tags()->attach($request->tags);
-
-		return back()->with('flash','Tu publicación ha sido creada');
-
-
-
-
+		$post->tags()->sync($request->tags);
+		return redirect()->route('admin.posts.edit',$post)->with('flash','Tu publicación ha sido guardada.');
 	}
 
 }

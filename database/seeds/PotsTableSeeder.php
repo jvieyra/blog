@@ -1,6 +1,7 @@
 <?php
 
 use App\Post;
+use App\Tag;
 use App\Category;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
@@ -23,6 +24,7 @@ class PotsTableSeeder extends Seeder
     	$category->name = "Categoria 2";
     	$category->save();
 
+        Tag::truncate();
 
     	Post::truncate();
     	$post = new Post;
@@ -33,6 +35,8 @@ class PotsTableSeeder extends Seeder
     	$post->published_at = Carbon::now()->subDays(4);
     	$post->category_id = 1;
     	$post->save();
+        //tag
+        $post->tags()->attach(Tag::create(['name' => 'etiqueta 1']));
 
     	$post = new Post;
         $post->title = "Mi segundo post";
@@ -42,6 +46,8 @@ class PotsTableSeeder extends Seeder
     	$post->published_at = Carbon::now()->subDays(3);
     	$post->category_id = 2;
     	$post->save();
+        //tag
+        $post->tags()->attach(Tag::create(['name' => 'etiqueta 2']));
 
     	$post = new Post;
         $post->title = "Mi tercer post";
@@ -51,6 +57,8 @@ class PotsTableSeeder extends Seeder
     	$post->published_at = Carbon::now()->subDays(2);
     	$post->category_id = 1;
     	$post->save();
+        //tag
+        $post->tags()->attach(Tag::create(['name' => 'etiqueta 3']));
 
     	$post = new Post;
         $post->title = "Mi cuarto post";
@@ -60,6 +68,8 @@ class PotsTableSeeder extends Seeder
     	$post->published_at = Carbon::now()->subDays(1);
     	$post->category_id = 2;
     	$post->save();
+        //tag
+        $post->tags()->attach(Tag::create(['name' => 'etiqueta 4']));
 
     }
 }

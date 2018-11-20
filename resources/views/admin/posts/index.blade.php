@@ -50,7 +50,7 @@
 
 @push('styles')
 	<!-- DataTables -->
-  <link rel="stylesheet" href="{{asset('/adminlte/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
+  <link rel="stylesheet" href="{{asset('/adminlte/datatables-net/css/dataTables.bootstrap.min.css')}}">
 	<!-- bootstrap datepicker -->
   <link rel="stylesheet" href="{{ asset('/adminlte/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
 @endpush
@@ -58,6 +58,10 @@
 @push('scripts')
 	<!-- bootstrap datepicker -->
 	<script src="{{ asset('/adminlte/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
+  
+  <!-- datables -->
+  <script src="{{ asset('/adminlte/datatables-main/js/jquery.dataTables.js') }}"></script>
+  <script src="{{ asset('/adminlte/datatables-net/js/dataTables.bootstrap.min.js') }}"></script>
 
 	<!-- page script -->
 	<script>
@@ -65,5 +69,9 @@
     	$('#posts-table').DataTable();
   	});
 	</script>
+  
+
+
+
 
 @endpush
