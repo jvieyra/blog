@@ -8,10 +8,8 @@
   </ol>
 @stop
 
-
 @section('content')
 	<h1>Dashboard</h1>
-
 	<div class="box box-primary">
     <div class="box-header">
       <h3 class="box-title">Listado de publicaciones</h3>
